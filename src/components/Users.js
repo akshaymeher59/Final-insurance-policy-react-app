@@ -25,20 +25,19 @@ const Users = ({ user1, setUser }) => {
     function addUserHandler() {
         if (userName) {
             let id;
-            // setUser(
-            //     (prevData) => {
-            //         id= prevData.length + 1;
-            //         return [...prevData, {
-            //             id: id,
-            //             name: userName
-            //         }]
-            //     }
-            // )
+            setUser(
+                (prevData) => {
+                    id= prevData.length + 1;
+                    return [...prevData, {
+                        id: id,
+                        name: userName
+                    }]
+                }
+            )
             setUserName('');
             fetch('http://localhost:8080/Users/', {
                 method: 'POST',
                 body: JSON.stringify({
-                    id: id,
                     name : userName
                 }),
                 headers: {
@@ -48,9 +47,6 @@ const Users = ({ user1, setUser }) => {
                 alert("Record inserted")
                 fetchUsers();
             })
-            
-
-
         }
     }
 

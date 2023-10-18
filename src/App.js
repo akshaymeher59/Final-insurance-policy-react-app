@@ -32,7 +32,7 @@ function App() {
             <Route path="user" element={
               <Users user1={user} setUser={setUser} />
             } />
-            <Route path="form" element={<Form />} />
+            <Route path="form" element={<Form  user={user} setUser={setUser}/>} />
 
           </Route>
         </Routes>
