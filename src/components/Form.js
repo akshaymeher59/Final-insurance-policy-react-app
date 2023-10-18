@@ -18,6 +18,7 @@ function Form({ user, setUser }) {
 
 
   const onSubmitHandler = (data) => {
+    
 
     console.log("Plicy Form Data");
     console.log(data);
@@ -42,8 +43,8 @@ function Form({ user, setUser }) {
     fetch('http://localhost:8080/userPolicyId', {
       method: 'POST',
       body: JSON.stringify({
-        name: user[data.pId - 1].name,
-        id: data.pId,
+       
+        uId: data.pId,
         pId: data.pId
       }),
       headers: {
@@ -67,6 +68,17 @@ function Form({ user, setUser }) {
       setPolicy([{},]);
     }
 
+  }
+
+
+  function deletPolicy(Id){
+
+    fetch("http://localhost:8080/Policies/" + Id, { method: 'DELETE' })
+    .then((response) => response.json())
+    .then((result) => {
+        alert("Record deleted")
+        fetchPolicy();
+    })
   }
 
   return (
@@ -161,8 +173,11 @@ function Form({ user, setUser }) {
                   <th>
                     <input type='text'></input>
                   </th>
-                  <th>
-                    <button type="button" class="btn btn-outline-primary">Claim</button>
+                  <th className='d-felx justify-content-around'>
+                    <button type="button" class="btn btn-outline-primary mr-3">Claim</button>
+                    <button type="button" class="btn btn-danger"
+                      onClick={(e)=>{ deletPolicy(data.pId) } }
+                    >Delete</button>
                   </th>
                 </tr>
               })

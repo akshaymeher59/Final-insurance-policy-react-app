@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 
 const Users = ({ user1, setUser }) => {
     const [userName, setUserName] = useState('');
+    const [isEdit, setIsEdit] = useState(false);
+    const [editName, setEditName] = useState('');
+
 
     useEffect(() => {
         fetchUsers();
@@ -14,7 +17,7 @@ const Users = ({ user1, setUser }) => {
             const res = await fetch('http://localhost:8080/users');
             const data = await res.json();
             setUser(data);
-            console.log(data);
+            console.log("Level1", data);
         } catch {
             alert("API Failed to fetch Data.")
             setUser([{},]);
@@ -27,9 +30,9 @@ const Users = ({ user1, setUser }) => {
             let id;
             setUser(
                 (prevData) => {
-                    id= prevData.length + 1;
+                    id = prevData.length + 1;
                     return [...prevData, {
-                        id: id,
+                        uId: id,
                         name: userName
                     }]
                 }
@@ -38,16 +41,34 @@ const Users = ({ user1, setUser }) => {
             fetch('http://localhost:8080/Users/', {
                 method: 'POST',
                 body: JSON.stringify({
-                    name : userName
+                    uId: id,
+                    name: userName
                 }),
                 headers: {
                     'Content-type': 'application/json',
                 },
-            }) .then((response) => response.json()).then((result) => {
+            }).then((response) => response.json()).then((result) => {
                 alert("Record inserted")
                 fetchUsers();
             })
         }
+    }
+
+    function editRecord(uId, name){
+            setEditName(name);
+    }
+
+
+    function deleteRecord(uId) {
+
+        // console.log("User Id OF Delete", uId);
+
+        fetch("http://localhost:8080/Users/" + uId, { method: 'DELETE' })
+            .then((response) => response.json())
+            .then((result) => {
+                alert("Record deleted")
+                fetchUsers();
+            })
     }
 
     return (
@@ -59,6 +80,7 @@ const Users = ({ user1, setUser }) => {
                     <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,8 +88,21 @@ const Users = ({ user1, setUser }) => {
                     {
                         user1.map((data) => {
                             return <tr>
-                                <td>u{data.id}</td>
-                                <td>{data.name}</td>
+                                <td>u{data.uId}</td>
+                                <td>
+                                    {data.name}
+                                    {isEdit && (
+                                     <span>
+                                            <input type='text' value={editName} onChange={(e)=>{setEditName(e.target.value)}}></input>
+                                            <button className='btn'>Save</button>
+                                     </span>   
+                                    
+                                    )}
+                                </td>
+                                <td className='d-flex  justify-content-around'>
+                                    {/* <button className='btn btn-warning' onClick={(e) => { editRecord(data.uId, data.name) }} >Edit</button> */}
+                                    <button className='btn btn-danger' onClick={(e) => { deleteRecord(data.uId) }} >Delete</button>
+                                </td>
                             </tr>
                         })
                     }
