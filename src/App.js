@@ -1,7 +1,7 @@
 import Header from "./components/Header";
 // import ClaimReq from "./components/ClaimReq";
-import Form from "./components/Form";
-import Users from "./components/Users";
+import Form from "./components/user/Form";
+import Users from "./components/user/Users";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 

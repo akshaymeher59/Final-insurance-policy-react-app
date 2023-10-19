@@ -18,7 +18,7 @@ function Form({ user, setUser }) {
 
 
   const onSubmitHandler = (data) => {
-    
+
 
     console.log("Plicy Form Data");
     console.log(data);
@@ -43,7 +43,7 @@ function Form({ user, setUser }) {
     fetch('http://localhost:8080/userPolicyId', {
       method: 'POST',
       body: JSON.stringify({
-       
+
         uId: data.pId,
         pId: data.pId
       }),
@@ -71,14 +71,28 @@ function Form({ user, setUser }) {
   }
 
 
-  function deletPolicy(Id){
+  function deletPolicy(Id) {
+    console.log("Pid", Id);
+    let deleteId = Id;
 
-    fetch("http://localhost:8080/Policies/" + Id, { method: 'DELETE' })
-    .then((response) => response.json())
-    .then((result) => {
-        alert("Record deleted")
-        fetchPolicy();
-    })
+
+    fetch("http://localhost:8080/Policies?pId=" + Id).then((response) => response.json())
+      .then((data) => {
+        deleteId = data[0].id;
+        console.log("deleteid", deleteId);
+        console.log("datap", data);
+        console.log("data iD", data[0].id);
+        fetch("http://localhost:8080/Policies/" + deleteId, { method: 'DELETE' })
+          .then((response) => response.json())
+          .then((result) => {
+            alert("Record deleted")
+            fetchPolicy();
+          })
+
+      });
+
+
+
   }
 
   return (
@@ -176,7 +190,7 @@ function Form({ user, setUser }) {
                   <th className='d-felx justify-content-around'>
                     <button type="button" class="btn btn-outline-primary mr-3">Claim</button>
                     <button type="button" class="btn btn-danger"
-                      onClick={(e)=>{ deletPolicy(data.pId) } }
+                      onClick={(e) => { deletPolicy(data.pId) }}
                     >Delete</button>
                   </th>
                 </tr>
