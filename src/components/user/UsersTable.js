@@ -1,8 +1,17 @@
 import React from 'react'
 
-const UsersTable = ({user1, isEditId, editName, setEditName, saveHandler, editRecord, deleteRecord,userName, setUserName,addUserHandler}) => {
+const UsersTable = ({ user1, isEditId, editName, setEditName, saveHandler, editRecord, deleteRecord, userName, setUserName, addUserHandler }) => {
+    
     return (
         <div className='container table-responsive'>
+
+            <div className='container row d-flex  mb-2 mt-5'>
+                <input type='text' placeholder='add user' value={userName} onChange={(e) => {
+                    setUserName(e.target.value);
+                }} className='form-control col-sm-4' />
+
+                <button onClick={addUserHandler} className='btn btn-success col-sm-1 ml-2'>Add</button>
+            </div>
 
             <table className='table table-bordered mt-5 container table-sm table-striped'>
                 <thead className='table-dark'>
@@ -23,8 +32,8 @@ const UsersTable = ({user1, isEditId, editName, setEditName, saveHandler, editRe
                                     {data.name}
                                     {data.uId === isEditId && (
                                         <span>
-                                            <input type='text' value={editName} onChange={(e) => { setEditName(e.target.value) }}></input>
-                                            <button className='btn btn-success'
+                                            <input type='text' value={editName} onChange={(e) => { setEditName(e.target.value) }} className='mr-2 ml-2'></input>
+                                            <button className='btn btn-success btn-sm'
                                                 onClick={saveHandler}
                                             >Save</button>
                                         </span>
@@ -41,13 +50,7 @@ const UsersTable = ({user1, isEditId, editName, setEditName, saveHandler, editRe
 
                 </tbody>
             </table>
-            <div className='container row d-flex  mb-2'>
-                <input type='text' placeholder='add user' value={userName} onChange={(e) => {
-                    setUserName(e.target.value);
-                }} className='form-control col-sm-4' />
 
-                <button onClick={addUserHandler} className='btn btn-success col-sm-1 ml-2'>Add</button>
-            </div>
 
         </div>
     )

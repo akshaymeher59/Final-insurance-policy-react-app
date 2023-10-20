@@ -2,9 +2,9 @@ import React from 'react'
 
 const ClaimApply = () => {
     return (
-        <table class="table table-striped">
+        <table className="table table-striped table-responsive container mt-5">
             <thead className='table-dark'>
-                <tr><span class="badge bg-info">Apply For Claim</span></tr>
+                <tr><span className="badge bg-info">Apply For Claim</span></tr>
                 <tr>
                     <th>#</th>
                     <th>Name</th>
@@ -26,7 +26,7 @@ const ClaimApply = () => {
                         <input type='text'></input>
                     </th>
                     <th>
-                        <button type="button" class="btn btn-outline-primary">Claim</button>
+                        <button type="button" className="btn btn-outline-primary">Claim</button>
                     </th>
                 </tr>
                 <tr>
@@ -39,7 +39,7 @@ const ClaimApply = () => {
                         <input type='text'></input>
                     </th>
                     <th>
-                        <button type="button" class="btn btn-outline-primary">Claim</button>
+                        <button type="button" className="btn btn-outline-primary">Claim</button>
                     </th>
                 </tr>
                 <tr>
@@ -52,7 +52,7 @@ const ClaimApply = () => {
                         <input type='text'></input>
                     </th>
                     <th>
-                        <button type="button" class="btn btn-outline-primary">Claim</button>
+                        <button type="button" className="btn btn-outline-primary">Claim</button>
                     </th>
                 </tr>
                 <tr>
@@ -65,7 +65,7 @@ const ClaimApply = () => {
                         <input type='text'></input>
                     </th>
                     <th>
-                        <button type="button" class="btn btn-outline-primary">Claim</button>
+                        <button type="button" className="btn btn-outline-primary">Claim</button>
                     </th>
                 </tr>
             </tbody>

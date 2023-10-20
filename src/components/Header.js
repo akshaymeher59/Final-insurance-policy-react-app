@@ -15,10 +15,10 @@ const Header = () => {
                         <Link className="nav-link" to='form'>Add Policies</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href=".">Claim Policies</a>
+                        <Link className="nav-link"to='claimPolicy'>Claim Policies</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href=".">Claim Settlement</a>
+                        <Link className="nav-link" to='claimSettlement'>Claim Settlement</Link>
                     </li>
                 </ul>
             </div>
