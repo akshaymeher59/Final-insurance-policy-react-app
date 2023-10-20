@@ -33,10 +33,10 @@ function App() {
             <Route path="user" element={
               <Users user1={user} setUser={setUser} />
             } />
-            <Route path="form" element={<Policy  user={user} setUser={setUser}/>} />
+            <Route path="form" element={<Policy user={user} setUser={setUser} />} />
             <Route path="claimPolicy" element={<ClaimApply />} />
             <Route path="claimSettlement" element={<ClaimReq />} />
-            
+
           </Route>
         </Routes>
       </BrowserRouter>

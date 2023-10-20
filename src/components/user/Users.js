@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import UsersTable from './UsersTable';
 
 const Users = ({ user1, setUser }) => {
+    
     const [userName, setUserName] = useState('');
     const [isEditId, setIsEditId] = useState();
     const [editName, setEditName] = useState('');
@@ -15,10 +16,17 @@ const Users = ({ user1, setUser }) => {
 
     async function fetchUsers() {
         try {
-            const res = await fetch('http://localhost:8080/users');
-            const data = await res.json();
-            setUser(data);
-            console.log("Level1", data);
+            const res = await fetch('http://localhost:8080/users')
+                .then((res) => {
+                    res.json().then((data) => {
+                        setUser(data);
+                        console.log("Level1", data);
+                    })
+
+                })
+            // const data = await res.json();
+            // setUser(data);
+            // console.log("Level1", data);
         } catch {
             alert("API Failed to fetch Data.")
             setUser([{},]);

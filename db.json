@@ -1,0 +1,49 @@
+{
+  "Users": [
+    {
+      "name": "Akshay",
+      "uId": 1,
+      "id": 1
+    },
+    {
+      "uId": 2,
+      "name": "Satish",
+      "id": 2
+    },
+    {
+      "uId": 3,
+      "name": "Vivek",
+      "id": 3
+    }
+  ],
+  "Policies": [
+    {
+      "pId": "3",
+      "policyName": "Jeevan Chaya",
+      "amount": "500",
+      "maxLimit": "9000",
+      "name": "Vivek",
+      "id": 1
+    },
+    {
+      "pId": "1",
+      "policyName": "Jeevan Gaurav",
+      "amount": "500",
+      "maxLimit": "6777",
+      "name": "Akshay",
+      "id": 2
+    }
+  ],
+  "userPolicyId": [
+    {
+      "uId": "3",
+      "pId": "3",
+      "id": 1
+    },
+    {
+      "uId": "1",
+      "pId": "1",
+      "id": 2
+    }
+  ]
+}
