@@ -1,5 +1,5 @@
 import Header from "./components/Header";
-import ClaimReq from "./components/ClaimReq";
+import ClaimSettlement from "./components/ClaimSettlement";
 import ClaimApply from "./components/ClaimApply";
 import Policy from "./components/user/Policy";
 import Users from "./components/user/Users";
@@ -34,8 +34,8 @@ function App() {
               <Users user1={user} setUser={setUser} />
             } />
             <Route path="form" element={<Policy user={user} setUser={setUser} />} />
-            <Route path="claimPolicy" element={<ClaimApply />} />
-            <Route path="claimSettlement" element={<ClaimReq />} />
+            {/* <Route path="claimPolicy" element={<ClaimApply />} /> */}
+            <Route path="claimSettlement" element={<ClaimSettlement />} />
 
           </Route>
         </Routes>

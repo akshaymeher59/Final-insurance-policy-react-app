@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ClaimReq = () => {
+const ClaimSettlement = () => {
     return (
         <div className='container m-5'>
             <table class="table ">
@@ -134,4 +134,4 @@ const ClaimReq = () => {
     )
 }
 
-export default ClaimReq
+export default ClaimSettlement

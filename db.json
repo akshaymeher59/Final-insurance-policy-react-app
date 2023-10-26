@@ -18,31 +18,31 @@
   ],
   "Policies": [
     {
-      "pId": "3",
+      "pId": "1",
       "policyName": "Jeevan Chaya",
-      "amount": "500",
-      "maxLimit": "9000",
-      "name": "Vivek",
+      "amount": "98889",
+      "maxLimit": "666666666",
+      "name": "Akshay",
       "id": 1
     },
     {
-      "pId": "1",
-      "policyName": "Jeevan Gaurav",
-      "amount": "500",
-      "maxLimit": "6777",
-      "name": "Akshay",
+      "pId": "3",
+      "policyName": "Jeevan Chaya",
+      "amount": "23",
+      "maxLimit": "6777777",
+      "name": "Vivek",
       "id": 2
     }
   ],
   "userPolicyId": [
     {
-      "uId": "3",
-      "pId": "3",
+      "uId": "1",
+      "pId": "1",
       "id": 1
     },
     {
-      "uId": "1",
-      "pId": "1",
+      "uId": "3",
+      "pId": "3",
       "id": 2
     }
   ]

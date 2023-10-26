@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 function Policy({ user, setUser }) {
 
   const [policy, setPolicy] = useState([]);
+  const [reqAmmount, setReqAmmount]= useState('');
   const {
     register,
     handleSubmit,
@@ -94,6 +95,12 @@ function Policy({ user, setUser }) {
 
   }
 
+
+  function claimHandler(cId){
+      console.log("ReqAmt",reqAmmount);
+      console.log("CID",cId);
+  }
+
   return (
       <PolicyForm
       handleSubmit={handleSubmit}
@@ -103,6 +110,9 @@ function Policy({ user, setUser }) {
       policy={policy}
       deletPolicy={deletPolicy}
       errors={errors}
+      claimHandler ={claimHandler}
+      reqAmmount={reqAmmount}
+      setReqAmmount={setReqAmmount}
       />
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PolicyForm = ({handleSubmit, onSubmitHandler, register, user, policy, deletPolicy, errors}) => {
+const PolicyForm = ({ handleSubmit, onSubmitHandler, register, user, policy, deletPolicy, errors, claimHandler, reqAmmount, setReqAmmount }) => {
     return (
         <>
 
@@ -91,10 +91,14 @@ const PolicyForm = ({handleSubmit, onSubmitHandler, register, user, policy, dele
                                     <th>{data.amount}</th>
                                     <th>{data.maxLimit}</th>
                                     <th>
-                                        <input type='text'></input>
+                                        <input type='text' value={reqAmmount}
+                                            onChange={(e) => { setReqAmmount(e.target.value) }}
+                                        ></input>
                                     </th>
                                     <th className='d-felx justify-content-around'>
-                                        <button type="button" class="btn btn-outline-primary mr-3">Claim</button>
+                                        <button type="button" class="btn btn-outline-primary mr-3" onClick={ (e)=>{ claimHandler(data.pId) } }
+                                        >Claim</button>
+
                                         <button type="button" class="btn btn-danger"
                                             onClick={(e) => { deletPolicy(data.pId) }}
                                         >Delete</button>

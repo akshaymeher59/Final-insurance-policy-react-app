@@ -14,9 +14,9 @@ const Header = () => {
                     <li className="nav-item">
                         <Link className="nav-link" to='form'>Add Policies</Link>
                     </li>
-                    <li className="nav-item">
+                    {/* <li className="nav-item">
                         <Link className="nav-link"to='claimPolicy'>Claim Policies</Link>
-                    </li>
+                    </li> */}
                     <li className="nav-item">
                         <Link className="nav-link" to='claimSettlement'>Claim Settlement</Link>
                     </li>
