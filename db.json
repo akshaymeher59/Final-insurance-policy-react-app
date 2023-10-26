@@ -18,32 +18,48 @@
   ],
   "Policies": [
     {
+      "pId": "2",
+      "policyName": "Jeevan Chaya",
+      "amount": "500",
+      "maxLimit": "60000",
+      "name": "Satish",
+      "id": 1,
+      "reqAmmount": 500
+    },
+    {
       "pId": "1",
       "policyName": "Jeevan Chaya",
-      "amount": "98889",
-      "maxLimit": "666666666",
+      "amount": "20",
+      "maxLimit": "20000",
       "name": "Akshay",
-      "id": 1
+      "id": 2,
+      "reqAmmount": 400
     },
     {
       "pId": "3",
       "policyName": "Jeevan Chaya",
-      "amount": "23",
-      "maxLimit": "6777777",
+      "amount": "4",
+      "maxLimit": "60000",
       "name": "Vivek",
-      "id": 2
+      "id": 3,
+      "reqAmmount": 200
     }
   ],
   "userPolicyId": [
     {
+      "uId": "2",
+      "pId": "2",
+      "id": 1
+    },
+    {
       "uId": "1",
       "pId": "1",
-      "id": 1
+      "id": 2
     },
     {
       "uId": "3",
       "pId": "3",
-      "id": 2
+      "id": 3
     }
   ]
 }

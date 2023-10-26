@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 function Policy({ user, setUser }) {
 
   const [policy, setPolicy] = useState([]);
-  const [reqAmmount, setReqAmmount]= useState('');
+  
   const {
     register,
     handleSubmit,
@@ -63,6 +63,8 @@ function Policy({ user, setUser }) {
     try {
       const res = await fetch('http://localhost:8080/Policies');
       const data = await res.json();
+      console.log(data);
+      
       setPolicy(data);
 
     } catch {
@@ -96,10 +98,10 @@ function Policy({ user, setUser }) {
   }
 
 
-  function claimHandler(cId){
-      console.log("ReqAmt",reqAmmount);
-      console.log("CID",cId);
-  }
+  // function claimHandler(cId){
+  //     // console.log("ReqAmt",reqAmmount);
+  //     console.log("CID",cId);
+  // }
 
   return (
       <PolicyForm
@@ -110,9 +112,10 @@ function Policy({ user, setUser }) {
       policy={policy}
       deletPolicy={deletPolicy}
       errors={errors}
-      claimHandler ={claimHandler}
-      reqAmmount={reqAmmount}
-      setReqAmmount={setReqAmmount}
+      fetchPolicy={fetchPolicy}
+      // onClaimHandler ={claimHandler}
+      // reqAmmount={reqAmmount}
+      // setReqAmmount={setReqAmmount}
       />
   );
 }
