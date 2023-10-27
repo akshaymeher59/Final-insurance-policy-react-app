@@ -1,6 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
+const newArr = [];
+const ClaimSettlement = ({ userPolicyId, policy }) => {
+  // let claimedUsers=[];
+  let claimStatusId = userPolicyId.filter(
+    (data) => data.hasOwnProperty("status") && data.status === "claim"
+  );
 
-const ClaimSettlement = () => {
+  // let claimedUsers=   policy.filter((data)=>data.pId===(somethings.foreach((data)=>data)))
+
+  let policyPid = claimStatusId.map((data) => {
+    return data.pId;
+  });
+
+  // for (let i = 0; i < policy.length; i++) {
+  //   if (policyPid.includes(policy[i].pId)) {
+  //     newArr.push(policy[i]);
+  //   }
+  // }
+
+  function handleApprove() {
+    // console.log("finalClaimedUSerssss",newArr);
+    console.log("Policy", policy);
+    console.log("UserPolicyId", userPolicyId);
+    console.log("claimStatusId", claimStatusId);
+    console.log("policyPid", policyPid);
+
+    // console.log("claimedUsers",somethings);
+    // console.log("claimedUsersss",claimedUsers);
+  }
+
   return (
     <div className="container m-5">
       <table class="table ">
@@ -17,16 +45,29 @@ const ClaimSettlement = () => {
             <th>Req Ammount</th>
           </tr>
         </thead>
-        <td>2</td>
-        <td>Aksh</td>
-        <td>Jeevan</td>
-        <td>2</td>
-        <td>2</td>
-        <td>
-          2<button className="btn btn-success ml-4 mr-2">Approve</button>
-          <button className="btn btn-danger">Reject</button>
-        </td>
-        <tbody></tbody>
+
+        {
+          <tbody>
+            <td>2</td>
+            <td>2</td>
+            <td>Jeevan</td>
+
+            <td>2</td>
+            <td>2</td>
+            <td>
+              2
+              <button
+                className="btn btn-success ml-4 mr-2"
+                onClick={() => {
+                  handleApprove();
+                }}
+              >
+                Approve
+              </button>
+              <button className="btn btn-danger">Reject</button>
+            </td>
+          </tbody>
+        }
       </table>
       <table className="table table-bordered mt-5">
         <thead className="table-success">
@@ -71,7 +112,7 @@ const ClaimSettlement = () => {
         </tbody>
       </table>
 
-      <table class="table table-striped">
+      {/* <table class="table table-striped">
         <thead className="table-dark">
           <tr>
             <span class="badge bg-info">Apply For Claim</span>
@@ -147,8 +188,8 @@ const ClaimSettlement = () => {
               </button>
             </th>
           </tr>
-        </tbody>
-      </table>
+        </tbody> */}
+      {/* </table> */}
     </div>
   );
 };

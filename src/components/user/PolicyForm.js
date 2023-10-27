@@ -11,6 +11,7 @@ const PolicyForm = ({
   deletPolicy,
   errors,
   fetchPolicy,
+  fetchUserPolicyId
 }) => {
   return (
     <>
@@ -99,6 +100,7 @@ const PolicyForm = ({
                   <PolicyUsers
                     key={data.id}
                     fetchPolicy={fetchPolicy}
+                    fetchUserPolicyId={fetchUserPolicyId}
                     data={data}
                     userPolicyId={userPolicyId}
                     deletPolicy={deletPolicy}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-function PolicyUsers({ data, deletPolicy, fetchPolicy,userPolicyId }) {
+function PolicyUsers({ data, deletPolicy, fetchPolicy,userPolicyId,fetchUserPolicyId }) {
   const [reqAmmount, setReqAmmount] = useState("");
 
   
@@ -50,7 +50,7 @@ function PolicyUsers({ data, deletPolicy, fetchPolicy,userPolicyId }) {
       }).then((response) => response.json())
       .then((result) => {
         console.log(data);
-
+           fetchUserPolicyId();
         // alert("Request to claimed successful");
         // fetchPolicy();
       });

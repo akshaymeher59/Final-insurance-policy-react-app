@@ -7,12 +7,47 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function App() {
+  
 
   const [user, setUser] = useState([]);
-  const [claimData,setClaimData]=useState([]);
-  function handleClaimRequest(policy){
-        setClaimData(policy.filter((data)=>data.hasOwnProperty("reqAmmount")));
+  const [policy, setPolicy] = useState([]);
+  const [userPolicyId, setUserPolicyId] = useState([]);
+  
+  useEffect(()=>{
+    fetchPolicy();
+    fetchUserPolicyId();
+  },[])
+
+  async function fetchPolicy() {
+    try {
+      const res = await fetch("http://localhost:8080/Policies");
+      const data = await res.json();
+      console.log(data);
+
+      setPolicy(data);
+    } catch {
+      alert("API Failed to fetch Data.");
+      setPolicy([{}]);
+    }
   }
+
+  
+  function fetchUserPolicyId() {
+    fetch("http://localhost:8080/userPolicyId")
+      .then((res) => {
+        res.json().then((data) => {
+          setUserPolicyId(data);
+        });
+      })
+      .catch(() => {
+        alert("API Failed to fetch Data.");
+        setUserPolicyId([{}]);
+      });
+    
+  }
+
+ 
+  
 
 
   return (
@@ -36,9 +71,9 @@ function App() {
             <Route path="user" element={
               <Users user1={user} setUser={setUser} />
             } />
-            <Route path="form" element={<Policy handleClaimRequest={handleClaimRequest} user={user} setUser={setUser} />} />
+            <Route path="form" element={<Policy policy={policy} setPolicy={setPolicy} userPolicyId={userPolicyId} setUserPolicyId={setUserPolicyId} user={user} setUser={setUser} />} />
             {/* <Route path="claimPolicy" element={<ClaimApply />} /> */}
-            <Route path="claimSettlement" element={<ClaimSettlement />} />
+            <Route path="claimSettlement"  element={<ClaimSettlement policy={policy} userPolicyId={userPolicyId}   />} />
 
           </Route>
         </Routes>
