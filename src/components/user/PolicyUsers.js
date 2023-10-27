@@ -51,8 +51,7 @@ function PolicyUsers({ data, deletPolicy, fetchPolicy,userPolicyId,fetchUserPoli
       .then((result) => {
         console.log(data);
            fetchUserPolicyId();
-        // alert("Request to claimed successful");
-        // fetchPolicy();
+       
       });
   }
   return (

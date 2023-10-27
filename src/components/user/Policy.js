@@ -51,7 +51,7 @@ function Policy({ user, setUser,setPolicy,setUserPolicyId,policy,userPolicyId })
     })
       .then((response) => response.json())
       .then((result) => {
-        // alert("Record updated")
+       
         fetchUserPolicyId();
       });
 
@@ -108,10 +108,7 @@ function Policy({ user, setUser,setPolicy,setUserPolicyId,policy,userPolicyId })
       });
   }
 
-  // function claimHandler(cId){
-  //     // console.log("ReqAmt",reqAmmount);
-  //     console.log("CID",cId);
-  // }
+  
 
   return (
     <PolicyForm
@@ -125,9 +122,7 @@ function Policy({ user, setUser,setPolicy,setUserPolicyId,policy,userPolicyId })
       errors={errors}
       fetchPolicy={fetchPolicy}
       fetchUserPolicyId={fetchUserPolicyId}
-      // onClaimHandler ={claimHandler}
-      // reqAmmount={reqAmmount}
-      // setReqAmmount={setReqAmmount}
+     
     />
   );
 }

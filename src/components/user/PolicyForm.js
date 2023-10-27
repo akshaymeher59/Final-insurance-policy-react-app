@@ -76,7 +76,7 @@ const PolicyForm = ({
         </button>
       </form>
 
-      <div className="container m-5 ">
+      <div className="container m-5  ">
         <table class="table table-striped">
           <thead className="table-dark">
             <tr>

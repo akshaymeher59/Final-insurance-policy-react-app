@@ -11,56 +11,124 @@
       "id": 2
     },
     {
-      "uId": 3,
       "name": "Vivek",
+      "uId": 3,
       "id": 3
+    },
+    {
+      "uId": 4,
+      "name": "kshitij",
+      "id": 4
+    },
+    {
+      "uId": 5,
+      "name": "nikhil",
+      "id": 5
+    },
+    {
+      "uId": 6,
+      "name": "kamlesh",
+      "id": 6
+    },
+    {
+      "uId": 7,
+      "name": "nitesh",
+      "id": 7
+    },
+    {
+      "uId": 8,
+      "name": "samyak",
+      "id": 8
     }
   ],
   "Policies": [
     {
-      "pId": "2",
+      "pId": "8",
+      "policyName": "Jeevan Chaya",
+      "amount": "500",
+      "maxLimit": "20000",
+      "name": "samyak",
+      "id": 1
+    },
+    {
+      "pId": "5",
       "policyName": "Jeevan Chaya",
       "amount": "500",
       "maxLimit": "500",
-      "name": "Satish",
-      "id": 1,
-      "reqAmmount": 65561
-    },
-    {
-      "pId": "1",
-      "policyName": "Jeevan Chaya",
-      "amount": "200",
-      "maxLimit": "456",
-      "name": "Akshay",
+      "name": "nikhil",
       "id": 2,
-      "reqAmmount": 5315151
+      "reqAmmount": 15615
     },
     {
       "pId": "3",
       "policyName": "Jeevan Chaya",
-      "amount": "200",
-      "maxLimit": "20000",
+      "amount": "151",
+      "maxLimit": "456",
       "name": "Vivek",
       "id": 3,
-      "reqAmmount": 454
+      "reqAmmount": 1651
+    },
+    {
+      "pId": "1",
+      "policyName": "Jeevan Chaya",
+      "amount": "456",
+      "maxLimit": "20000",
+      "name": "Akshay",
+      "id": 4,
+      "reqAmmount": 156156
+    },
+    {
+      "pId": "2",
+      "policyName": "Jeevan Chaya",
+      "amount": "500",
+      "maxLimit": "55665654",
+      "name": "Satish",
+      "id": 5
+    },
+    {
+      "pId": "4",
+      "policyName": "Jeevan Chaya",
+      "amount": "200",
+      "maxLimit": "11",
+      "name": "kshitij",
+      "id": 6,
+      "reqAmmount": 135151
     }
   ],
   "userPolicyId": [
     {
-      "uId": "2",
-      "pId": "2",
-      "id": 1,
-      "status": "claim"
+      "uId": "8",
+      "pId": "8",
+      "id": 1
     },
     {
-      "uId": "1",
-      "pId": "1",
+      "uId": "5",
+      "pId": "5",
       "id": 2,
       "status": "claim"
     },
     {
-      "status": "claim",
-      "id": 3
+      "uId": "3",
+      "pId": "3",
+      "id": 3,
+      "status": "reject"
+    },
+    {
+      "uId": "1",
+      "pId": "1",
+      "id": 4,
+      "status": "approve"
+    },
+    {
+      "uId": "2",
+      "pId": "2",
+      "id": 5
+    },
+    {
+      "uId": "4",
+      "pId": "4",
+      "id": 6,
+      "status": "claim"
     }
   ]
 }

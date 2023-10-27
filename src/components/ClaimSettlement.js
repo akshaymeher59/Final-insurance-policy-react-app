@@ -1,38 +1,103 @@
-import React, { useEffect } from "react";
-const newArr = [];
-const ClaimSettlement = ({ userPolicyId, policy }) => {
-  // let claimedUsers=[];
+import React, { useEffect, useState } from "react";
+// const newArr = [];
+const ClaimSettlement = ({ userPolicyId, policy, fetchUserPolicyId }) => {
+  //getting filter data depending on status
   let claimStatusId = userPolicyId.filter(
     (data) => data.hasOwnProperty("status") && data.status === "claim"
   );
 
-  // let claimedUsers=   policy.filter((data)=>data.pId===(somethings.foreach((data)=>data)))
+  let approveStatusId = userPolicyId.filter(
+    (data) => data.hasOwnProperty("status") && data.status === "approve"
+  );
 
+  let rejectStatusId = userPolicyId.filter(
+    (data) => data.hasOwnProperty("status") && data.status === "reject"
+  );
+
+  // getting ids in array
   let policyPid = claimStatusId.map((data) => {
     return data.pId;
   });
 
-  // for (let i = 0; i < policy.length; i++) {
-  //   if (policyPid.includes(policy[i].pId)) {
-  //     newArr.push(policy[i]);
-  //   }
-  // }
+  let approvePid = approveStatusId.map((data) => {
+    return data.pId;
+  });
 
-  function handleApprove() {
-    // console.log("finalClaimedUSerssss",newArr);
+  let rejectPid = rejectStatusId.map((data) => {
+    return data.pId;
+  });
+
+  //all status claim
+  let statusClaim = policyPid.flatMap((ids) => {
+    return policy.filter((item) => item.pId === ids);
+  });
+
+  let statusApprove = approvePid.flatMap((ids) => {
+    return policy.filter((item) => item.pId === ids);
+  });
+
+  let statusReject = rejectPid.flatMap((ids) => {
+    return policy.filter((item) => item.pId === ids);
+  });
+
+  function handleApprove(pId) {
     console.log("Policy", policy);
     console.log("UserPolicyId", userPolicyId);
     console.log("claimStatusId", claimStatusId);
     console.log("policyPid", policyPid);
+    console.log("StatusClaim", statusClaim);
 
-    // console.log("claimedUsers",somethings);
-    // console.log("claimedUsersss",claimedUsers);
+    fetch("http://localhost:8080/userPolicyId?pId=" + pId)
+      .then((res) => res.json())
+      .then((data) => {
+        let id = data[0].id;
+        console.log("data", data);
+        let prevData = data[0];
+        fetch("http://localhost:8080/userPolicyId/" + id, {
+          method: "PUT",
+          body: JSON.stringify({
+            ...prevData,
+            status: "approve",
+          }),
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            fetchUserPolicyId();
+          });
+      });
+  }
+
+  function handleReject(pId) {
+    fetch("http://localhost:8080/userPolicyId?pId=" + pId)
+      .then((res) => res.json())
+      .then((data) => {
+        let id = data[0].id;
+        console.log("data", data);
+        let prevData = data[0];
+        fetch("http://localhost:8080/userPolicyId/" + id, {
+          method: "PUT",
+          body: JSON.stringify({
+            ...prevData,
+            status: "reject",
+          }),
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            fetchUserPolicyId();
+          });
+      });
   }
 
   return (
     <div className="container m-5">
-      <table class="table ">
-        <thead className="table-dark">
+      <table className="table table-striped table-dark table-bordered">
+        <thead className="table-dark ">
           <tr>
             <span class="badge bg-secondary">Claim Requests</span>
           </tr>
@@ -43,31 +108,42 @@ const ClaimSettlement = ({ userPolicyId, policy }) => {
             <th>Premium</th>
             <th>Max Limit</th>
             <th>Req Ammount</th>
+            <th>Action</th>
           </tr>
         </thead>
+        <tbody>
+          {statusClaim.map((data) => {
+            return (
+              <tr>
+                <td>p{data.pId}</td>
+                <td>{data.name}</td>
+                <td>{data.policyName}</td>
 
-        {
-          <tbody>
-            <td>2</td>
-            <td>2</td>
-            <td>Jeevan</td>
-
-            <td>2</td>
-            <td>2</td>
-            <td>
-              2
-              <button
-                className="btn btn-success ml-4 mr-2"
-                onClick={() => {
-                  handleApprove();
-                }}
-              >
-                Approve
-              </button>
-              <button className="btn btn-danger">Reject</button>
-            </td>
-          </tbody>
-        }
+                <td>{data.amount}</td>
+                <td>{data.maxLimit}</td>
+                <td>{data.reqAmmount}</td>
+                <td>
+                  <button
+                    className="btn btn-outline-success ml-4 mr-2"
+                    onClick={(e) => {
+                      handleApprove(data.pId);
+                    }}
+                  >
+                    Approve
+                  </button>
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={(e) => {
+                      handleReject(data.pId);
+                    }}
+                  >
+                    Reject
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
       </table>
       <table className="table table-bordered mt-5">
         <thead className="table-success">
@@ -80,18 +156,18 @@ const ClaimSettlement = ({ userPolicyId, policy }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>p1</td>
-            <td>Ram</td>
-          </tr>
-          <tr>
-            <td>p4</td>
-            <td>Ramesh</td>
-          </tr>
+          {statusApprove.map((item) => {
+            return (
+              <tr>
+                <td>p{item.pId}</td>
+                <td>{item.name}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
-      <table className="table table-bordered mt-5">
-        <thead className="table">
+      <table className="table table-bordered table-striped mt-5">
+        <thead className="table thead-dark">
           <tr>
             <span class="badge bg-danger">Rejected Policy</span>
           </tr>
@@ -101,95 +177,16 @@ const ClaimSettlement = ({ userPolicyId, policy }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>p3</td>
-            <td>Sunil</td>
-          </tr>
-          <tr>
-            <td>p2</td>
-            <td>Sham</td>
-          </tr>
+          {statusReject.map((item) => {
+            return (
+              <tr>
+                <td>p{item.pId}</td>
+                <td>{item.name}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
-
-      {/* <table class="table table-striped">
-        <thead className="table-dark">
-          <tr>
-            <span class="badge bg-info">Apply For Claim</span>
-          </tr>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Policy</th>
-            <th>Premium</th>
-            <th>Max Limit</th>
-            <th>Req Ammount</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th>p1</th>
-            <th>Ram</th>
-            <th>Jeevan Chaya</th>
-            <th>500</th>
-            <th>100000</th>
-            <th>
-              <input type="text"></input>
-            </th>
-            <th>
-              <button type="button" class="btn btn-outline-primary">
-                Claim
-              </button>
-            </th>
-          </tr>
-          <tr>
-            <th>p2</th>
-            <th>SHam</th>
-            <th>Jeevan Chaya</th>
-            <th>500</th>
-            <th>100000</th>
-            <th>
-              <input type="text"></input>
-            </th>
-            <th>
-              <button type="button" class="btn btn-outline-primary">
-                Claim
-              </button>
-            </th>
-          </tr>
-          <tr>
-            <th>p3</th>
-            <th>Ram</th>
-            <th>Jeevan Chaya</th>
-            <th>500</th>
-            <th>100000</th>
-            <th>
-              <input type="text"></input>
-            </th>
-            <th>
-              <button type="button" class="btn btn-outline-primary">
-                Claim
-              </button>
-            </th>
-          </tr>
-          <tr>
-            <th>p4</th>
-            <th>Ram</th>
-            <th>Jeevan Chaya</th>
-            <th>500</th>
-            <th>100000</th>
-            <th>
-              <input type="text"></input>
-            </th>
-            <th>
-              <button type="button" class="btn btn-outline-primary">
-                Claim
-              </button>
-            </th>
-          </tr>
-        </tbody> */}
-      {/* </table> */}
     </div>
   );
 };
