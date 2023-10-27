@@ -7,6 +7,7 @@ const PolicyForm = ({
   register,
   user,
   policy,
+  userPolicyId,
   deletPolicy,
   errors,
   fetchPolicy,
@@ -99,6 +100,7 @@ const PolicyForm = ({
                     key={data.id}
                     fetchPolicy={fetchPolicy}
                     data={data}
+                    userPolicyId={userPolicyId}
                     deletPolicy={deletPolicy}
                   ></PolicyUsers>
                 );

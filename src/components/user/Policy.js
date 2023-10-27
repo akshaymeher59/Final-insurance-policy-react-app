@@ -3,10 +3,13 @@ import { useForm } from 'react-hook-form';
 import PolicyForm from './PolicyForm';
 import { useEffect, useState } from 'react';
 
-function Policy({ user, setUser }) {
+function Policy({ user, setUser,handleClaimRequest }) {
 
   const [policy, setPolicy] = useState([]);
-  
+  const [userPolicyId,setUserPolicyId]=useState([]);
+  useEffect(function(){
+    handleClaimRequest(policy);
+  },[policy])
   const {
     register,
     handleSubmit,
@@ -52,6 +55,9 @@ function Policy({ user, setUser }) {
       headers: {
         'Content-type': 'application/json',
       },
+    }).then((response) => response.json()).then((result) => {
+      // alert("Record updated")
+      fetchUserPolicyId();
     })
 
 
@@ -70,6 +76,21 @@ function Policy({ user, setUser }) {
     } catch {
       alert("API Failed to fetch Data.")
       setPolicy([{},]);
+    }
+
+  }
+
+  async function fetchUserPolicyId() {
+    try {
+      const res = await fetch('http://localhost:8080/userPolicyId');
+      const data = await res.json();
+      console.log(data);
+      
+      setUserPolicyId(data);
+
+    } catch {
+      alert("API Failed to fetch Data.")
+      setUserPolicyId([{},]);
     }
 
   }
@@ -110,6 +131,7 @@ function Policy({ user, setUser }) {
       register={register}
       user={user}
       policy={policy}
+      userPolicyId={userPolicyId}
       deletPolicy={deletPolicy}
       errors={errors}
       fetchPolicy={fetchPolicy}

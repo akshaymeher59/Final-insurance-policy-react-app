@@ -1,11 +1,15 @@
-import { useState } from "react";
-function PolicyUsers({ data, deletPolicy, fetchPolicy }) {
+import { useEffect, useState } from "react";
+function PolicyUsers({ data, deletPolicy, fetchPolicy,userPolicyId }) {
   const [reqAmmount, setReqAmmount] = useState("");
 
+  
   function claimHandler(Id) {
-    console.log("data claim", data);
-    // console.log("Pid claim", pId);
-    console.log("fetchPolicy Claim", fetchPolicy);
+   console.log("policyData",data);
+   console.log("userPolicyData",userPolicyId);
+    const userPolicyIds=userPolicyId.filter((data)=>data.id===Id);
+    const userPolicyIdObj=userPolicyIds[0];
+   console.log("userPolicyDataModified",userPolicyIdObj);
+   
 
     if (Number(reqAmmount) > 0) {
       //   console.log(reqAmmount);
@@ -14,7 +18,7 @@ function PolicyUsers({ data, deletPolicy, fetchPolicy }) {
         method: "PUT",
         body: JSON.stringify({
           ...data,
-          reqAmmount: amt,
+          reqAmmount: amt
         }),
         headers: {
           "Content-type": "application/json",
@@ -32,6 +36,24 @@ function PolicyUsers({ data, deletPolicy, fetchPolicy }) {
     } else {
       alert("Please Write Amount");
     }
+
+
+    fetch("http://localhost:8080/userPolicyId/" + Id, {
+        method: "PUT",
+        body: JSON.stringify({
+            ...userPolicyIdObj,
+          status:"claim"
+        }),
+        headers: {
+          "Content-type": "application/json",
+        },
+      }).then((response) => response.json())
+      .then((result) => {
+        console.log(data);
+
+        // alert("Request to claimed successful");
+        // fetchPolicy();
+      });
   }
   return (
     <>
