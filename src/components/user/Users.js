@@ -16,7 +16,7 @@ const Users = ({ user1, setUser }) => {
 
     async function fetchUsers() {
         try {
-            const res = await fetch('http://localhost:8080/users')
+             await fetch('http://localhost:8080/users')
                 .then((res) => {
                     res.json().then((data) => {
                         setUser(data);

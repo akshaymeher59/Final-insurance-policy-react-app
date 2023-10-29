@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import PolicyForm from "./PolicyForm";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 
 function Policy({ user, setUser,setPolicy,setUserPolicyId,policy,userPolicyId }) {
   

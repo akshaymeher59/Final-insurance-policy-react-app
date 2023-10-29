@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 function PolicyUsers({ data, deletPolicy, fetchPolicy,userPolicyId,fetchUserPolicyId }) {
   const [reqAmmount, setReqAmmount] = useState("");
 

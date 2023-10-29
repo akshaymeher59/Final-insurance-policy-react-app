@@ -1,6 +1,5 @@
 import Header from "./components/Header";
 import ClaimSettlement from "./components/ClaimSettlement";
-import ClaimApply from "./components/ClaimApply";
 import Policy from "./components/user/Policy";
 import Users from "./components/user/Users";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
